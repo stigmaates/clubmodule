@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClubModule Owner Auth</title>
+  <link rel="stylesheet" href="/static/owner-auth.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>ClubModule • Вход и регистрация владельца</h1>
+
+    <section class="card">
+      <h2>Регистрация владельца</h2>
+      <form method="post" action="/owner/register">
+        <label>Имя владельца
+          <input type="text" name="owner_name" required minlength="2" maxlength="255" />
+        </label>
+        <label>Название клуба
+          <input type="text" name="club_name" required minlength="2" maxlength="255" />
+        </label>
+        <label>Пароль
+          <input type="password" name="password" required minlength="8" maxlength="128" />
+        </label>
+        <button type="submit">Зарегистрировать</button>
+      </form>
+      {% if register_message %}
+      <p class="message">{{ register_message }}</p>
+      {% endif %}
+    </section>
+
+    <section class="card">
+      <h2>Вход владельца</h2>
+      <form method="post" action="/owner/login">
+        <label>Имя владельца
+          <input type="text" name="name" required minlength="2" maxlength="255" />
+        </label>
+        <label>Пароль
+          <input type="password" name="password" required minlength="8" maxlength="128" />
+        </label>
+        <button type="submit">Войти</button>
+      </form>
+      {% if login_message %}
+      <p class="message {{ 'success' if login_success else 'error' }}">{{ login_message }}</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>
